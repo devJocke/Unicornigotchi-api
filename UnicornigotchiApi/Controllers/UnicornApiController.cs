@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EFGetStarted.AspNetCore.NewDb.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using UnicornigotchiApi.Models;
 
 namespace EFGetStarted.AspNetCore.NewDb.Controllers {
 
@@ -26,14 +25,14 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
         }
 
         [HttpGet("{id:int}")]
-        public async Task<Unicorn> Details(int? id) {
-            var unicorn = await _context.Unicorn.FirstOrDefaultAsync(m => m.Id == id);
+        public async Task<Unicorn> Details(int? id) { 
+            var unicorn = await _context.Unicorn.FirstOrDefaultAsync(m =>  m.Id  == id);
             return unicorn;
         }
 
         // GET: Unicorns/Delete/5
         [HttpDelete("{id:int}")]
-        public async Task<Unicorn> Delete(int? id) {
+        public async Task<Unicorn> Delete(decimal? id) {
             var unicorn = await _context.Unicorn.FirstOrDefaultAsync(m => m.Id == id);
             _context.Unicorn.Remove(await _context.Unicorn.FindAsync(id));
             await _context.SaveChangesAsync();

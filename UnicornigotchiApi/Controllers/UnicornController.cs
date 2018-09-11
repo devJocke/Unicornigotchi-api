@@ -6,6 +6,7 @@ using EFGetStarted.AspNetCore.NewDb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using UnicornigotchiApi.Models;
 
 namespace EFGetStarted.AspNetCore.NewDb.Controllers {
     [ApiExplorerSettings(IgnoreApi = true)]
@@ -16,12 +17,12 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
         public UnicornController(mobileRemoteDbContext context) {
             _context = context;
         }
-         
+
         [HttpGet]
         public async Task<IActionResult> Index() {
             return View(await _context.Unicorn.ToListAsync());
         }
-        
+
         //GET: Unicorns/Details/5
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Details(int? id) {
@@ -61,7 +62,7 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPut]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,ThirdName")] Unicorn unicorn) {
+        public async Task<IActionResult> Create(Unicorn unicorn) {
             if (ModelState.IsValid) {
                 _context.Add(unicorn);
                 await _context.SaveChangesAsync();
@@ -83,8 +84,8 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
             }
             return View(unicorn);
         }
-         
-  
+
+
         // POST: Unicorns/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

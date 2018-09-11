@@ -53,7 +53,7 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
             if (unicorn == null) {
                 return NotFound();
             }
-
+            //RedirectToAction(nameof(Unicorn));
             return View(unicorn);
         }
 

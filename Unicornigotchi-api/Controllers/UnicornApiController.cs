@@ -27,34 +27,30 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
 
         [HttpGet("{id:int}")]
         public async Task<Unicorn> Details(int? id) {
-            //if (id == null) {
-            //    return NotFound();
-            //}
-
             var unicorn = await _context.Unicorn.FirstOrDefaultAsync(m => m.Id == id);
-            //if (unicorn == null) {
-            //    return NotFound();
-            //}
             return unicorn;
         }
+
         // GET: Unicorns/Delete/5
         [HttpDelete("{id:int}")]
         public async Task<Unicorn> Delete(int? id) {
-            //if (id == null) {
-            //    return NotFound();
-            //}
-
             var unicorn = await _context.Unicorn.FirstOrDefaultAsync(m => m.Id == id);
-            //if (unicorn == null) {
-            //    return NotFound();
-            //}
+            _context.Unicorn.Remove(await _context.Unicorn.FindAsync(id));
+            await _context.SaveChangesAsync();
 
             return unicorn;
         }
 
+        [HttpPut]
+        public async Task<Unicorn> Create(Unicorn unicorn) {
+            await _context.Unicorn.AddAsync(unicorn);
+            await _context.SaveChangesAsync();
+            return unicorn;
+        }
 
-        //private bool UnicornExists(int id) {
-        //    return _context.Unicorn.Any(e => e.Id == id);
-        //}
+
+        private bool UnicornExists(int? id) {
+            return _context.Unicorn.Any(e => e.Id == id);
+        }
     }
 }

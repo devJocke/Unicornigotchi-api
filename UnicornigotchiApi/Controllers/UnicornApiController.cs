@@ -8,7 +8,7 @@ using UnicornigotchiApi.Models;
 
 namespace EFGetStarted.AspNetCore.NewDb.Controllers {
 
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class UnicornApiController : Controller {
 
         private readonly mobileRemoteDbContext _context;
@@ -26,7 +26,7 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
 
         [HttpGet("{id:int}")]
         public async Task<Unicorn> Details(int? id) { 
-            var unicorn = await _context.Unicorn.FirstOrDefaultAsync(m =>  m.Id  == id);
+            var unicorn = await _context.Unicorn.FirstOrDefaultAsync(m => m.Id == id);
             return unicorn;
         }
 

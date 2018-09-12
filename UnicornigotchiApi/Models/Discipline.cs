@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnicornigotchiApi.Models;
 
-namespace EFGetStarted.AspNetCore.NewDb.Models
-{
+namespace UnicornigotchiApi.Models {
+
     public partial class Discipline
     {
         public Discipline()

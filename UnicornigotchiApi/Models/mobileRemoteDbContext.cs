@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -30,7 +29,7 @@ namespace UnicornigotchiApi.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["UnicornDbContext"].ConnectionString);
+                optionsBuilder.UseSqlServer("Data Source=tcp:85.226.127.160;Initial Catalog=mobileRemoteDb;Persist Security Info=True;User ID=JockesSQLserver;Password=hx3pDa!-W");
             }
         }
 
@@ -47,15 +46,7 @@ namespace UnicornigotchiApi.Models
 
             modelBuilder.Entity<Care>(entity =>
             {
-                entity.HasIndex(e => e.UnicornId)
-                    .HasName("IX_Care")
-                    .IsUnique();
-
                 entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.UnicornId).HasColumnName("unicornId");
-
-            
             });
 
             modelBuilder.Entity<Farm>(entity =>
@@ -72,7 +63,12 @@ namespace UnicornigotchiApi.Models
 
             modelBuilder.Entity<Unicorn>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .HasColumnType("decimal(18, 0)")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.CareId).HasColumnName("careId");
 
                 entity.Property(e => e.FarmId).HasColumnName("farmId");
 
@@ -90,6 +86,11 @@ namespace UnicornigotchiApi.Models
                     .HasColumnName("thirdName")
                     .HasMaxLength(255)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Care)
+                    .WithMany(p => p.Unicorn)
+                    .HasForeignKey(d => d.CareId)
+                    .HasConstraintName("FK_Unicorn_Care");
             });
 
             modelBuilder.HasSequence("hibernate_sequence");

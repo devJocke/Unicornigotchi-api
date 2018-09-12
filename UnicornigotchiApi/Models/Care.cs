@@ -5,9 +5,13 @@ namespace UnicornigotchiApi.Models
 {
     public partial class Care
     {
-        public int Id { get; set; }
-        public int? UnicornId { get; set; }
+        public Care()
+        {
+            Unicorn = new HashSet<Unicorn>();
+        }
 
-        public Unicorn Unicorn { get; set; }
+        public int Id { get; set; }
+
+        public ICollection<Unicorn> Unicorn { get; set; }
     }
 }

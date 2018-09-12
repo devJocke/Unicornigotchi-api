@@ -1,6 +1,6 @@
 using System;
 
-namespace EFGetStarted.AspNetCore.NewDb.Models {
+namespace UnicornigotchiApi.Models {
     public class ErrorViewModel {
         public string RequestId { get; set; }
 

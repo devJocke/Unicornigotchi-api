@@ -12,10 +12,7 @@ namespace EFGetStarted.AspNetCore.NewDb {
     public class Startup {
 
         public IConfiguration Configuration { get; }
-
-        //public Startup(IConfiguration configuration) {
-        //    Configuration = configuration;
-        //}
+         
 
         public Startup(IHostingEnvironment env) {
             var builder = new ConfigurationBuilder()
@@ -31,7 +28,7 @@ namespace EFGetStarted.AspNetCore.NewDb {
         public void ConfigureServices(IServiceCollection services) {
             services.Configure<CookiePolicyOptions>(options => {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                //options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -43,7 +40,7 @@ namespace EFGetStarted.AspNetCore.NewDb {
 
             services.AddMvc().AddXmlDataContractSerializerFormatters();
             services.AddSwaggerGen(c =>
-             c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "My API", Version = "v1" }));
+             c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "Unicornigotchi", Version = "v1" }));
 
 
             //    services.AddAuthentication(options =>
@@ -59,6 +56,7 @@ namespace EFGetStarted.AspNetCore.NewDb {
             //}); 
         }
 
+        //The Configure method is used to specify how the app responds to HTTP requests. https://docs.microsoft.com/en-us/aspnet/core/fundamentals/startup?view=aspnetcore-2.1#the-configure-method
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
 
             if (env.IsDevelopment()) {
@@ -67,9 +65,7 @@ namespace EFGetStarted.AspNetCore.NewDb {
                 app.UseExceptionHandler(" / Home/Error");
                 app.UseHsts();
             }
-
-
-
+             
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

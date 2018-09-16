@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore; 
 using Microsoft.Extensions.Logging;
-using UnicornigotchiApi.Models;
+using UnicornigotchiApi.DataModel;
 
 namespace EFGetStarted.AspNetCore.NewDb {
     public class Startup {

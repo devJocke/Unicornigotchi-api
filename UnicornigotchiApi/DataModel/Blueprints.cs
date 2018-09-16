@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UnicornigotchiApi.Models
+namespace UnicornigotchiApi.DataModel
 {
     public partial class Blueprints
     {

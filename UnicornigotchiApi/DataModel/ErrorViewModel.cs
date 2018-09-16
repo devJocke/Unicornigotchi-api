@@ -1,6 +1,6 @@
 using System;
 
-namespace UnicornigotchiApi.Models {
+namespace UnicornigotchiApi.DataModel {
     public class ErrorViewModel {
         public string RequestId { get; set; }
 

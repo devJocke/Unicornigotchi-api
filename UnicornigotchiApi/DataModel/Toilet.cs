@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnicornigotchiApi.Models;
 
-namespace EFGetStarted.AspNetCore.NewDb.Models
+namespace UnicornigotchiApi.DataModel
 {
     public partial class Toilet
     {
         public Toilet()
-        {
-            Care = new HashSet<Care>();
+        { 
         }
 
         public int Id { get; set; }
         public bool? Flush { get; set; }
-
-        public ICollection<Care> Care { get; set; }
+         
     }
 }

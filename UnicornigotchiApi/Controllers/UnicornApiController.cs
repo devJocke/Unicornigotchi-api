@@ -17,48 +17,35 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
             _context = context;
         }
 
-        // GET: Unicorns 
+        //GET: Unicorns
         [HttpGet]
-        [Route("GetAll")]
+        [Route("GetAllUnicorns")]
         public async Task<List<Unicorn>> GetAll() {
-            var unicorn = await _context.Unicorn
-            .Include(i => i.Care.Discipline)
-            .Include(i => i.Care.Play)
-            .Include(i => i.Care.Toilet).ToListAsync();
-            return   unicorn;
-        }
 
-        //[HttpGet("{id:int}")]
-        //public async Task<Unicorn> Details(int? id) {
-        //    var unicorn = await _context.Unicorn.FirstOrDefaultAsync(m => m.Id == id);
-        //    foreach (var k in _context.Unicorn.Select(j => j.FirstName)) {
-        //        Console.WriteLine("--------------------------------------------------------------");
-        //        Console.WriteLine(k);
-        //        Console.WriteLine("--------------------------------------------------------------");
-        //    }
-        //    return unicorn;
-        //}
+            List<Unicorn> unicorn = await _context.Unicorn
+                .Include(i => i.Care.Discipline)
+                .Include(i => i.Care.Play)
+                .Include(i => i.Care.Toilet)
+                .ToListAsync();
+
+            return unicorn;
+        }
+        //Enable-Migrations -EnableAutomaticMigrations -UnicornigotchiApi Components 
+
         [HttpGet("{id:int}")]
-        public async Task<Unicorn> Details(int? id) {
-            await _context.Unicorn.FirstOrDefaultAsync(m => m.Id == id);
+        public async Task<Unicorn> Details(int? id) { 
 
             var unicorn = await _context.Unicorn
                 .Include(i => i.Care.Discipline)
                 .Include(i => i.Care.Play)
                 .Include(i => i.Care.Toilet)
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-
-            Console.WriteLine("--------------------------------------------------------------");
-            Console.WriteLine(unicorn.CareId);
-            Console.WriteLine("--------------------------------------------------------------");
-
+                .FirstOrDefaultAsync(m => m.Id == id); 
 
             return unicorn;
         }
 
         //public static IQueryable<Unicorn> GetFullUnicorn(this IQueryable<Unicorn> query) {
-        //    return query.Include(u => u.Care).i
+        //    return query.Include(u => u.Care);
         //}
 
         // GET: Unicorns/Delete/5

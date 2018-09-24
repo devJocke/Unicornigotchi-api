@@ -3,3 +3,5 @@ obj/
 appsettings.json
 launchSettings.json
 .vs
+UnicornigotchiApi/UnicornigotchiApi.csproj
+UnicornigotchiApi/UnicornigotchiApi.csproj.user

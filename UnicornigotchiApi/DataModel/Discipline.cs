@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace UnicornigotchiApi.DataModel
-{
-    public partial class Discipline
-    {
-        public Discipline()
-        { 
-        }
+namespace UnicornigotchiApi.DataModel {
 
-        public int Id { get; set; }
+    public class Discipline  {
+        public int Id{ get; set; }
         public bool? Angry { get; set; }
-         
     }
 }

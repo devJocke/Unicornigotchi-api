@@ -33,16 +33,23 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
         //Enable-Migrations -EnableAutomaticMigrations -UnicornigotchiApi Components 
 
         [HttpGet("{id:int}")]
-        public async Task<Unicorn> Details(int? id) { 
+        public async Task<Unicorn> Details(int? id) {
 
             var unicorn = await _context.Unicorn
                 .Include(i => i.Care.Discipline)
                 .Include(i => i.Care.Play)
                 .Include(i => i.Care.Toilet)
-                .FirstOrDefaultAsync(m => m.Id == id); 
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             return unicorn;
         }
+
+        //GET: Unicorns
+        [HttpGet]
+        [Route("SumOfAllNeeds")]
+        public async Task<NeedsCount> GetSumOfNeeds() => await _context.NeedsCount.FirstOrDefaultAsync();
+
+
 
         //public static IQueryable<Unicorn> GetFullUnicorn(this IQueryable<Unicorn> query) {
         //    return query.Include(u => u.Care);

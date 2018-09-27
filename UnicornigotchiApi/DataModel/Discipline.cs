@@ -7,6 +7,6 @@ namespace UnicornigotchiApi.DataModel {
 
     public class Discipline  {
         public int Id{ get; set; }
-        public bool? Angry { get; set; }
+        public int? Angry { get; set; }
     }
-}
+} 

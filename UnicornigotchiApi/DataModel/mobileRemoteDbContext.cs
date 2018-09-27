@@ -19,17 +19,19 @@ namespace UnicornigotchiApi.DataModel {
         public DbSet<Play> Play { get; set; }
         public DbSet<Toilet> Toilet { get; set; }
         public DbSet<Unicorn> Unicorn { get; set; }
+        public DbQuery<NeedsCount> NeedsCount { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            if (!optionsBuilder.IsConfigured) {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseLazyLoadingProxies();
+            if (!optionsBuilder.IsConfigured) { 
                 optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["UnicornDbContext"].ConnectionString);
             }
 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
+
+            modelBuilder.Query<NeedsCount>().ToView("NeedsView");
+
 
             modelBuilder.Entity<Unicorn>(entity => {
                 entity.Property(e => e.Id)

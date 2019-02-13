@@ -22,7 +22,7 @@ namespace UnicornigotchiApi.DataModel {
         public DbQuery<NeedsCount> NeedsCount { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            if (!optionsBuilder.IsConfigured) { 
+            if (!optionsBuilder.IsConfigured) {
                 optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["UnicornDbContext"].ConnectionString);
             }
 
@@ -34,15 +34,11 @@ namespace UnicornigotchiApi.DataModel {
 
 
             modelBuilder.Entity<Unicorn>(entity => {
+
                 entity.Property(e => e.Id)
                     .HasColumnName("id")
                     .HasColumnType("decimal(18, 0)")
                     .ValueGeneratedOnAdd();
-
-                entity.Property(e => e.CareId).HasColumnName("careId");
-
-                entity.Property(e => e.FarmId).HasColumnName("farmId");
-
 
                 entity.Property(e => e.FirstName)
                     .HasColumnName("firstName")
@@ -59,6 +55,9 @@ namespace UnicornigotchiApi.DataModel {
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
+
+                entity.Property(e => e.CareId).HasColumnName("careId");
+                entity.Property(e => e.FarmId).HasColumnName("farmId");
 
             });
 

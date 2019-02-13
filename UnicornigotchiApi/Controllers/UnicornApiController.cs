@@ -50,11 +50,6 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
         public async Task<NeedsCount> GetSumOfNeeds() => await _context.NeedsCount.FirstOrDefaultAsync();
 
 
-
-        //public static IQueryable<Unicorn> GetFullUnicorn(this IQueryable<Unicorn> query) {
-        //    return query.Include(u => u.Care);
-        //}
-
         // GET: Unicorns/Delete/5
         [HttpDelete("{id:int}")]
         public async Task<Unicorn> Delete(decimal? id) {
@@ -72,7 +67,16 @@ namespace EFGetStarted.AspNetCore.NewDb.Controllers {
             return unicorn;
         }
 
+        [HttpPut]
+        [Route("UpdateNeeds")]
+        public Unicorn Edit([FromBody]Unicorn unicorn) {
 
+            _context.Unicorn.Update(unicorn);
+            _context.SaveChanges();
+
+            return unicorn;
+        }
+         
         private bool UnicornExists(int? id) {
             return _context.Unicorn.Any(e => e.Id == id);
         }
